@@ -1,0 +1,32 @@
+/* hide action input fields */
+#changelist-form-step, #changelist-form-page {
+	display: none;
+	margin-left: 0.5em;
+}
+
+/* styles for list view */
+#result_list thead th.column-_reorder_ {
+	width: 50px;
+}
+
+#result_list div.drag {
+	background: url(../icons/drag.png) repeat 0px 0px;
+	cursor: no-drop;
+	opacity: 0.5;
+}
+#result_list div.drag.handle {
+	cursor: ns-resize;
+	opacity: 1;
+}
+/* styles for tabular inlines */
+fieldset.sortable table tr.form-row.has_original td.original p {
+	cursor: ns-resize;
+	background-image: url(../icons/drag.png);
+	background-repeat: repeat;
+	width: calc(100% - 18px);
+}
+/* styles for stacked inlines */
+fieldset.sortable .inline-related.has_original h3 {
+	background: url(../icons/drag.png) repeat;
+	cursor: ns-resize;
+}

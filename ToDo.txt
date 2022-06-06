@@ -17,4 +17,27 @@ ToDo:
         - P/s tasavvur qiling-a, agar mening kontent tilim ingliz tilida bo'lsa va men so'rov parametriga ruscha so'z kiritgan bo'lsam natija ingliz tilida qaytarilishi kerak
 
 Done:
-    
+    Git init
+    Add Readme
+    Secure Secret Key
+    Add admin panel import export to excel
+    Add Rest Framework
+    Add corsheaders
+    Add simple-jwt
+    Add django-filter
+    Add django-rest-swagger
+    Add django-cors-headers
+    Add Log
+    Add Sentry
+    Add django-extensions
+    Configure django-rest-swagger
+    Configure django-cors-headers
+    Configure Sipmle-JWT
+    Add some languages
+    Login & Register JWT
+    Add django-filter
+    Blog list API
+    Blog detail API
+    Add sirializer
+    Add pagination
+    Add ckeditor
