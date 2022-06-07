@@ -35,10 +35,7 @@ class BlogDetailAPIView(RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
 
 
-    # def get_serializer_class(self):
-    #     if self.request.method == "GET":
-    #         return PostDetailLanguageSerializer
-    #     return BlogDetailSerializer
+
 
     def get_queryset(self):
         queryset = (
