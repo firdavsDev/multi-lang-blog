@@ -1,16 +1,17 @@
 # sentry for hook errors
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
+#time
+import datetime
 #for log
 import logging
 import logging.config
+from pathlib import Path
+
+import sentry_sdk
 #hide sensitive data
 from decouple import config
-from pathlib import Path
-#time
-import datetime
 # translate
 from django.utils.translation import gettext_lazy as _
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,9 +29,7 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 INSTALLED_APPS = [
-    # "admin_interface",
-    # "colorfield",
-    'suit',
+    # 'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,8 +54,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    'django.middleware.locale.LocaleMiddleware',
+    "corsheaders.middleware.CorsMiddleware",#ADD THIS
+    'django.middleware.locale.LocaleMiddleware',#ADD THIS
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -173,7 +172,7 @@ DATETIME_FORMAT = "%d-%m-%Y %H:%M:%S"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-STATICFILES_DIRS = [BASE_DIR / 'static_files']
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -195,19 +194,19 @@ CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
 
 #django custom admin
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Artel',
-    'HEADER_DATE_FORMAT': 'l, j. F Y',
-    'HEADER_TIME_FORMAT': 'H:i',
-    'SHOW_REQUIRED_ASTERISK': True,
-     'CONFIRM_UNSAVED_CHANGES': True,
-     'MENU_ICONS': {
-        'sites': 'icon-leaf',
-        'auth': 'icon-lock',
-    },
-     'LIST_PER_PAGE': 20,
-     
-}
+# SUIT_CONFIG = {
+#     'ADMIN_NAME': 'Artel',
+#     'HEADER_DATE_FORMAT': 'l, j. F Y',
+#     'HEADER_TIME_FORMAT': 'H:i',
+#     'SHOW_REQUIRED_ASTERISK': True,
+#      'CONFIRM_UNSAVED_CHANGES': True,
+#      'MENU_ICONS': {
+#         'sites': 'icon-leaf',
+#         'auth': 'icon-lock',
+#     },
+#      'LIST_PER_PAGE': 20,
+
+# }
 
 # sentry configuration
 if not DEBUG:

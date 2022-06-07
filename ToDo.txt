@@ -1,9 +1,11 @@
 Task main case:
     Regular user should be able to create one instance of a blog-post (article, post) in three languages "uz", "ru", and "en".
+
 Task:
     1. create a POST request where a user should be able to create a single blog-post instance with three languages
     2. create a GET request where I will retrieve a list of blog-posts, and those blog-post instances should be retrieved in English language only by default
     3. I should be able to switch the blog-post instances' language by sending Content-Language in either header or query params
+
 ToDo:
     ! Create a new project, install everything that is required (Django, Rest Framework and so on)
     ! Use two separate models:
@@ -15,6 +17,11 @@ ToDo:
         - but my content-language is in any other language but not "ru"
         - the result of my search should be returned in the language of my choice
         - P/s tasavvur qiling-a, agar mening kontent tilim ingliz tilida bo'lsa va men so'rov parametriga ruscha so'z kiritgan bo'lsam natija ingliz tilida qaytarilishi kerak
+        - Docker deploy
+        -AWS deployment
+        -Add managers
+        -Postgresql
+        -Add pre-commit
 
 Done:
     Git init
@@ -41,3 +48,7 @@ Done:
     Add sirializer
     Add pagination
     Add ckeditor
+
+
+Copyright © 2022, All rights reserved.
+Yaqinda Zakaz proyect olganim tufayli Task zadaniyaga kup vaqt ajrata olmadim. Lekin Ishxona ishida o'zimni kuproq kursata olaman!

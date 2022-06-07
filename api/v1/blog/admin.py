@@ -1,15 +1,15 @@
 from django.contrib import admin
+#remove group
+from django.contrib.auth.models import Group
 
 # Register your models here.
 from . import models
-#remove group
-from django.contrib.auth.models import Group
+
 admin.site.unregister(Group)
 
 
 #import export
 from import_export.admin import ImportExportActionModelAdmin
-
 
 # Register your models here.
 admin.site.site_title = "Artel Blog API"
@@ -38,5 +38,5 @@ class LanguageAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'name', 'code')
     date_hierarchy = 'created_at'
     ordering = ['-created_at']
-    
+
 admin.site.register(models.Category)

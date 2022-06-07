@@ -1,7 +1,8 @@
-from rest_framework.fields import SerializerMethodField
-from rest_framework import serializers
-from .models import Blog
 from django.contrib.auth.models import User
+from requests import request
+from rest_framework import serializers
+
+from .models import Blog, PostLanguage
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -12,21 +13,21 @@ class UserDetailSerializer(serializers.ModelSerializer):
 class BlogSerializer(serializers.ModelSerializer):
     post_categories = serializers.SerializerMethodField()
     author = serializers.SerializerMethodField()
-    url = serializers.HyperlinkedIdentityField(view_name='blog_api:blog', lookup_field='slug')
+    url = serializers.HyperlinkedIdentityField(view_name='blog_api:blog', lookup_field='pk')
 
     class Meta:
         model = Blog
         fields = [
             'url',
-            'author', 
-            'title', 
-            'content', 
+            'author',
+            'title',
+            'content',
             'post_categories',
             'categories',
-            'image', 
-            'published_at', 
-            'views_count', 
-            'active', 
+            'image',
+            'published_at',
+            'views_count',
+            'active',
             'slug'
             ]
         read_only_fields = ('slug', 'post_categories', 'author')
@@ -37,7 +38,7 @@ class BlogSerializer(serializers.ModelSerializer):
 
     def get_post_categories(self, obj):
         categories = obj.categories.all()
-        return [categpry.name for categpry in categories]
+        return [category.name for category in categories]
 
     def get_author(self, obj):
         return obj.author.username
@@ -49,15 +50,15 @@ class BlogDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = [
-            'author', 
-            'title', 
-            'content', 
+            'author',
+            'title',
+            'content',
             'post_categories',
             'categories',
-            'image', 
-            'published_at', 
-            'views_count', 
-            'active', 
+            'image',
+            'published_at',
+            'views_count',
+            'active',
             'slug',
             ]
         read_only_fields = ('slug', 'post_categories', 'author')
@@ -71,5 +72,22 @@ class BlogDetailSerializer(serializers.ModelSerializer):
         return [category.name for category in categories]
 
     def get_author(self, obj):
-        return obj.author.username        
-        
+        return obj.author.username
+
+
+class PostDetailLanguageSerializer(serializers.ModelSerializer):
+    post = BlogSerializer(read_only=True)
+    class Meta:
+        model = PostLanguage
+        fields = [
+            'post',
+            'title',
+            'content',
+            'categories',
+            'active',
+            ]
+        read_only_fields = ('slug', )
+        extra_kwargs = {
+            'categories':{'write_only': True},
+            'active':{'write_only': True}
+        }

@@ -1,6 +1,8 @@
 from rest_framework import generics
 from rest_framework.response import Response
+
 from .serializer import RegisterSerializer, UserSerializer
+
 
 #Register API
 class RegisterApi(generics.GenericAPIView):
@@ -13,4 +15,3 @@ class RegisterApi(generics.GenericAPIView):
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "message": "User Created Successfully.  Now perform Login to get your token" ,
         })
-        
