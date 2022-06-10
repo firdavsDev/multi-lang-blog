@@ -46,7 +46,7 @@ urlpatterns = [
     re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
 ]
-#transaction
+#translation
 urlpatterns += i18n_patterns(
     path('secret/', admin.site.urls),
 )

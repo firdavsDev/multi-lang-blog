@@ -1,0 +1,25 @@
+// post request for create Blog and blog translates
+http://127.0.0.1:8000/api/blogs/
+{
+  "title": "Davron sdsswqd323fwed",
+  "content": "davron test",
+  "translate_list": [
+    {
+        "title":"Davron title",
+        "content": "davron test",
+        "language": "uz",
+        "active": true
+    },
+    {
+        "title":"Davron title",
+        "content": "davron test",
+        "language": "uz",
+        "active": true
+    }
+  ],
+  "published_at": "2022-06-10T12:05:38.039Z",
+  "active": true
+}
+
+
+// Regester for get acsess key -

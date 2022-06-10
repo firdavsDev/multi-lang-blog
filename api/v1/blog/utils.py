@@ -1,3 +1,6 @@
+
+
+# get clean query data
 def clean_query_data(query_data: dict):
     """for get request, we need to clean the query data
 

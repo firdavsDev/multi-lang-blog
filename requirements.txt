@@ -9,7 +9,6 @@ diff-match-patch==20200713
 Django==3.2.6
 django-admin-honeypot==1.1.0
 django-admin-interface==0.19.1
-django-admin-sortable2==2.0.4
 django-admin-thumbnails==0.2.6
 django-ckeditor==6.4.2
 django-colorfield==0.7.0

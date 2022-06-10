@@ -1,57 +1,58 @@
-from django.db.models import Count, F, Q
-from django.utils.timezone import now
+from asyncio.log import logger
 from rest_framework.generics import (ListCreateAPIView,
                                      RetrieveUpdateDestroyAPIView)
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-
 from api.v1.blog.permissions import IsAuthorOrReadOnly
-
 from .models import Blog, PostLanguage
-from .serializers import (BlogDetailSerializer, BlogSerializer,
-                          PostDetailLanguageSerializer)
-from .utils import clean_query_data
+from .serializers import BlogSerializer
+from api.v1.blog.utils import clean_query_data
+from rest_framework.response import Response
+from django.db import transaction, utils
+from rest_framework import exceptions, serializers, status
 
-
+#list blog
 class BlogAPIView(ListCreateAPIView):
-    queryset = Blog.cus_objects.all()
+    queryset = Blog.custom_objects.get_published_blogs()
     serializer_class = BlogSerializer
     permission_classes = [IsAuthenticatedOrReadOnly,]
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queries = clean_query_data(self.request.query_params)
-        if search := queries.get("search", None):
-            queryset = queryset.filter(Q(lang_post__title__icontains=search) | Q(lang_post__content__icontains=search)  |  Q(title__icontains=search) | Q(content__icontains=search))
-        return queryset
+    # def create(self, request, *args, **kwargs):
+    #     r = request.data
+    #     title = r['title']
+    #     content = r['content']
+    #     active = r['active']
+    #     translate_list = r['translate_list']
+    #     with transaction.atomic():
+    #         try:
+    #             blog = Blog.objects.create(title=title, content=content, active=active, author=request.user)
+    #             for translate in translate_list:
+    #                 PostLanguage.objects.create(post=blog, title=translate['title'], content=translate['content'], active=translate['active'])
+    #         except utils.IntegrityError as e:
+    #             print(e)
+    #             r = exceptions.ValidationError(
+    #                 detail={
+    #                     "error": "Cannot create blog with Blog language",
+    #                 }
+    #             )
+    #             r.status_code = 409
+    #             raise r from e
+    #     return Response(BlogSerializer(blog).data, status=status.HTTP_201_CREATED)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
+    def get_queryset(self):
+        queries = clean_query_data(self.request.query_params)
+        return Blog.custom_objects.get_translate_blog_list(queries)
 
+
+#Detail blog
 class BlogDetailAPIView(RetrieveUpdateDestroyAPIView):
-    # queryset = Blog.objects.filter( Q(active=True) & Q(published_at__lte=now()) )
-    serializer_class = BlogDetailSerializer
+    queryset = Blog.custom_objects.get_published_blogs()
+    serializer_class = BlogSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
     lookup_field = 'pk'
 
-
-
-
     def get_queryset(self):
-        queryset = (
-            Blog.objects.all()
-            .annotate(num_categories=Count("categories"))
-            .order_by("-categories")
-        )
-        queryset.filter(pk=self.kwargs.get("pk")).update(
-            views_count=F("views_count") + 1
-        )
         queries = clean_query_data(self.request.query_params)
-        lang = queries.get("lang", None)
-        #TODO add lang to queryset (bu yerda blog detailning tilariga qoshim kerak edi. )
-        if lang == "uz":
-            queryset = queryset.filter(Q(lang_post__language__code = "uz"))
-        elif lang == "ru":
-            queryset = queryset.filter(language__code="ru")
-
-        return queryset
+        return Blog.custom_objects.get_translate_blog_detail(blog_pk=self.kwargs.get('pk'), queries=queries)

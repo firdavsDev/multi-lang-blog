@@ -5,7 +5,6 @@ from django.db import models
 from rest_framework import serializers
 from rest_framework.permissions import IsAuthenticated
 
-
 # Register serializer for user registration and get token
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,6 +13,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password':{'write_only': True},
         }
+
     def create(self, validated_data):
         return User.objects.create_user(validated_data['username'], password=validated_data['password'], first_name=validated_data['first_name'], last_name=validated_data['last_name'])
 

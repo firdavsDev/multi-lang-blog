@@ -4,39 +4,31 @@ from django.contrib.auth.models import Group
 
 # Register your models here.
 from . import models
-
+#Remove group from admin
 admin.site.unregister(Group)
-
 
 #import export
 from import_export.admin import ImportExportActionModelAdmin
-
-# Register your models here.
+# admin custom
 admin.site.site_title = "Artel Blog API"
 admin.AdminSite.site_header = "Artel Blog API"
 admin.site.index_title = "Artel Bloga hush kelibsiz"
 
-# for blog language
+# for blogs language
 @admin.register(models.PostLanguage)
 class BlogLangAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
-    list_display = ['id', 'title','language','active' ]
+    list_display = ['id', 'title','language', 'active' ]
     list_filter = ['active',]
     list_display_links = ('id', 'title')
 
 # For blog
 @admin.register(models.Blog)
 class BlogAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
-    list_display = ['id', 'author', 'title','language','published_at' ]
+    list_display = ['id', 'author', 'title','published_at' ]
     list_filter = ['active',]
     list_display_links = ('id', 'author', 'title')
     date_hierarchy = 'created_at'
     ordering = ['-created_at']
-
-@admin.register(models.Language)
-class LanguageAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'code', 'created_at']
-    list_display_links = ('id', 'name', 'code')
-    date_hierarchy = 'created_at'
-    ordering = ['-created_at']
-
+    search_fields = ['title', 'content']
+# for blog category
 admin.site.register(models.Category)

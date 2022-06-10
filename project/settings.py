@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'import_export',
     'rest_framework',
     'corsheaders',
-    'adminsortable2',
+    # 'adminsortable2',
     'rest_framework_simplejwt',
     'drf_yasg',
     'django_filters',

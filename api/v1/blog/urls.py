@@ -6,6 +6,6 @@ app_name = 'blog_api'
 
 urlpatterns = [
     path('blogs/', BlogAPIView.as_view(), name='blogs'),
-    path('blogs/<int:pk>', BlogDetailAPIView.as_view(), name='blog'),
+    path('blog/<int:pk>', BlogDetailAPIView.as_view(), name='blog'),
 
 ]

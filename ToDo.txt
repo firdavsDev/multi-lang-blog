@@ -19,9 +19,13 @@ ToDo:
         - P/s tasavvur qiling-a, agar mening kontent tilim ingliz tilida bo'lsa va men so'rov parametriga ruscha so'z kiritgan bo'lsam natija ingliz tilida qaytarilishi kerak
         - Docker deploy
         -AWS deployment
-        -Add managers
+        -Add managers & Queryset
         -Postgresql
-        -Add pre-commit
+        -Post request for create blog with 3 languages{
+            Bulk create in atomic transaction
+            search in any language
+        }
+
 
 Done:
     Git init
@@ -48,7 +52,7 @@ Done:
     Add sirializer
     Add pagination
     Add ckeditor
+    Add pre-commit
 
-
-Copyright © 2022, All rights reserved.
+                                                    Copyright © 2022, All rights reserved.
 Yaqinda Zakaz proyect olganim tufayli Task zadaniyaga kup vaqt ajrata olmadim. Lekin Ishxona ishida o'zimni kuproq kursata olaman!
