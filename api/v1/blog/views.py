@@ -16,28 +16,6 @@ class BlogAPIView(ListCreateAPIView):
     serializer_class = BlogSerializer
     permission_classes = [IsAuthenticatedOrReadOnly,]
 
-    # def create(self, request, *args, **kwargs):
-    #     r = request.data
-    #     title = r['title']
-    #     content = r['content']
-    #     active = r['active']
-    #     translate_list = r['translate_list']
-    #     with transaction.atomic():
-    #         try:
-    #             blog = Blog.objects.create(title=title, content=content, active=active, author=request.user)
-    #             for translate in translate_list:
-    #                 PostLanguage.objects.create(post=blog, title=translate['title'], content=translate['content'], active=translate['active'])
-    #         except utils.IntegrityError as e:
-    #             print(e)
-    #             r = exceptions.ValidationError(
-    #                 detail={
-    #                     "error": "Cannot create blog with Blog language",
-    #                 }
-    #             )
-    #             r.status_code = 409
-    #             raise r from e
-    #     return Response(BlogSerializer(blog).data, status=status.HTTP_201_CREATED)
-
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 

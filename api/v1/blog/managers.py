@@ -29,7 +29,7 @@ class BlogQuerySet(manager.QuerySet):
         except Exception as e:
             logger.error(e)
 
-    # get translate blog list TODO : must optimiziton & return one queryset. not many querysets I try to find solution for this little bug :)
+    # get translate blog list TODO : must optimiziton. Bug - return one queryset. not many querysets I try to find solution for this little bug :)
     def get_translate_blog_list_queryset(self, queries:dict):
         from .models import PostLanguage
         try:

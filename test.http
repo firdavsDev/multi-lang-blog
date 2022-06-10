@@ -23,3 +23,10 @@ http://127.0.0.1:8000/api/blogs/
 
 
 // Regester for get acsess key -
+
+
+// Get blog list - endpoint http://127.0.0.1:8000/api/blogs/?lang=uz
+
+// Get blog detail - endpoint http://127.0.0.1:8000/api/blog/34/?lang=ru ( u must choose language )
+
+// U can create DB just bash load_database.sh (admin / 1 )

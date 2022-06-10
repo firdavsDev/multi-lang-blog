@@ -1,4 +1,5 @@
 # sentry for hook errors
+import sentry_sdk
 #time
 import datetime
 #for log
@@ -6,7 +7,6 @@ import logging
 import logging.config
 from pathlib import Path
 
-import sentry_sdk
 #hide sensitive data
 from decouple import config
 # translate
@@ -97,9 +97,9 @@ DATABASES = {
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql_psycopg2",
-#         "NAME": "edu",
-#         "USER": "edu",
-#         "PASSWORD": "edu",
+#         "NAME": "artel",
+#         "USER": "artal",
+#         "PASSWORD": "arte123",
 #         "HOST": "localhost",
 #         "PORT": "5432",
 #     }
@@ -168,7 +168,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-DATETIME_FORMAT = "%d-%m-%Y %H:%M:%S"
+DATETIME_FORMAT = "d-m-Y H:m:s"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -193,20 +193,6 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
 
-#django custom admin
-# SUIT_CONFIG = {
-#     'ADMIN_NAME': 'Artel',
-#     'HEADER_DATE_FORMAT': 'l, j. F Y',
-#     'HEADER_TIME_FORMAT': 'H:i',
-#     'SHOW_REQUIRED_ASTERISK': True,
-#      'CONFIRM_UNSAVED_CHANGES': True,
-#      'MENU_ICONS': {
-#         'sites': 'icon-leaf',
-#         'auth': 'icon-lock',
-#     },
-#      'LIST_PER_PAGE': 20,
-
-# }
 
 # sentry configuration
 if not DEBUG:

@@ -97,6 +97,7 @@ class Blog(BaseModel):
                     img.thumbnail( (800, 800) )
                     img.save(self.image.path)
 
+# Blog translation
 class PostLanguage(BaseModel):
     post = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='post_lang', verbose_name=_('post'), related_query_name='lang_post')
     LANGUAGE_TYPES = (
