@@ -22,7 +22,7 @@ http://127.0.0.1:8000/api/blogs/
 }
 
 
-// Regester for get acsess key -
+// Regester for get acsess key - http://127.0.0.1:8000/api/token/
 
 
 // Get blog list - endpoint http://127.0.0.1:8000/api/blogs/?lang=uz
